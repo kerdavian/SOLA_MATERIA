@@ -1,0 +1,35 @@
+{% extends 'base.html.j2' %}
+{% block title %} Nyitólap {% endblock %}
+{%block headsource %}  <link rel="stylesheet" href="../static/style_index.css"> {% endblock %}
+
+{% block content %}
+  {% if posts|length == 0 %}
+  <h1 class="no-posts">Nincsenek bejegyzések</h1>
+  {% endif %}
+
+
+
+<section class="posts">
+  {% for post in posts %}
+    <div class="post">
+        <div class="post-data">
+            <div class="img-div">
+                <img src="/files/{{post.teaser_image}}" alt="">
+            </div>
+            <div class="other-data">
+                <div class="catauth">
+                    <div class="post-category"><a href="" class="">Teológia</a></div>
+                    <div class="post-auther"><a href="" class="">Csámpai Elemér</a></div>
+                </div>
+                <div class="title">
+                    <a href="/post/{{ post.id }}">{{post.title}}"</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  {% endfor %}
+</section>
+{% endblock %}
+
+
+

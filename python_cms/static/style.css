@@ -1,0 +1,243 @@
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+
+  /* background-color: rgb(242, 237, 228); */
+  background-color: rgb(255, 255, 255);
+  margin: 0;
+}
+
+header,
+main,
+footer {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+}
+
+.header-nav {
+  display: flex;
+  width: 85%;
+}
+
+.logo {
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 0.4rem;
+}
+
+.logo > a {
+  text-decoration: none;
+  color: black;
+}
+
+.logo > a > h1 {
+  font-size: 2.25rem;
+  margin: 0;
+  padding: 0;
+  border-bottom: 4px solid black;
+}
+
+.feliratkozas > h2 {
+  margin: 0;
+  margin-top: 1rem;
+  font-size: 2.2rem;
+  letter-spacing: 0.1rem;
+}
+
+.logo > a > h2 {
+  font-size: 1rem;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  font-style: italic;
+  line-height: 0;
+  color: rgba(90, 86, 79, 1);
+  letter-spacing: 0.3rem;
+}
+
+.menu-container {
+  flex-grow: 1;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item {
+  flex-grow: 1;
+  border-bottom: 4px solid black;
+}
+
+.menu-item a {
+  text-decoration: none;
+  height: 2rem;
+  font-size: 1.2rem;
+
+  /* font-weight: 600; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.1rem;
+  color: rgba(90, 86, 79, 1);
+
+  /* font-style: italic; */
+}
+
+.loged-in-submenu > a {
+  text-decoration: none;
+  color: rgba(90, 86, 79, 1);
+  font-style: italic;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.log-in > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(90, 86, 79, 1);
+  font-style: italic;
+}
+
+.rolunk a {
+  text-decoration: none;
+  color: rgba(90, 86, 79, 1);
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-left: 20px;
+}
+
+.menu-item:hover a {
+  color: black;
+  font-weight: 600;
+}
+
+.chip {
+  overflow: initial;
+}
+
+.log-in {
+  display: flex;
+  margin-left: auto;
+  position: relative;
+}
+
+.log-in > a:hover {
+  font-weight: 600;
+  color: black;
+}
+
+.loged-in {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.loged-in-submenu {
+  display: none;
+}
+
+.loged-in:hover > .loged-in-submenu {
+  position: absolute;
+  top: 70px;
+  height: 90px;
+  width: 220px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  padding: 10px;
+  border-top: 4px solid black;
+  border-right: 4px solid black;
+}
+
+.loged-in-submenu > a:hover {
+  color: black;
+  font-weight: 600;
+}
+
+.user-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-pic {
+  width: 2rem;
+  height: 2rem;
+}
+
+.current-user {
+  margin-left: 10px;
+  font-weight: 600;
+  color: rgb(5, 84, 5);
+}
+
+/* .current-user:hover {
+  font-weight: 600;
+} */
+
+footer {
+  height: 20%;
+  border-top: 4px solid black;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+
+input {
+  width: 250px;
+  height: 30px;
+}
+
+.email-bar {
+  position: relative;
+  flex-grow: 0.5;
+}
+
+.email-field {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  font-size: 1.4rem;
+  height: 2.2rem;
+  padding: 0 30px 0 10px;
+  box-sizing: border-box;
+}
+
+.email-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.rolunk {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.rolunk span {
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+}
+
+.rolunk a:hover {
+  color: black;
+}
+
+footer > .logo {
+  margin-top: 1rem;
+}

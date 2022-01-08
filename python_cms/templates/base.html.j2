@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    {# <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css" /> #}
+    {# <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" /> #}
+    {# <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" /> #}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
+    {% block headsource %} {% endblock %}
+</head>
+
+<body>
+    <header>
+        <!-- .logo>h1{The Latest News}+h2{Always the best} -->
+
+        <!-- <input type="checkbox" id="toggle" class="menu-checkbox" />
+        <label for="toggle" class="toggle-label">
+            <i class="fas fa-bars"></i>
+        </label> -->
+
+        <div class="header-nav">
+            <div class="logo">
+                <a href="{{ url_for('pages.index') }}">
+                    <h1>Sola Materia</h1>
+                    <h2>Egyedül az Anyag</h2>
+                </a>
+            </div>
+            <!-- nav.menu-container>ul.menu>(li.menu-item>a[href="#"])*5 -->
+            <nav class="menu-container">
+                <ul class="menu">
+                    <li class="menu-item"><a href="#">Filozófia</a></li>
+                    <li class="menu-item"><a href="#">Tudomány</a></li>
+                    <li class="menu-item"><a href="#">Politika</a></li>
+                    <li class="menu-item"><a href="#">Versus</a></li>
+                </ul>
+            </nav>
+
+        </div>
+        <div class="log-in">
+            {% if current_user.is_authenticated %}
+                <div class="chip loged-in">
+                    <div class="user-data">
+                        <img class="user-pic" src="{{ current_user.profile_pic }}" alt="">
+                        <div class="current-user">{{ current_user.name }}</div>
+                    </div>
+                    <div class="loged-in-submenu">
+                        <a href="{{ url_for('pages.create_post') }}">Create Post</a>
+                        <a href="{{ url_for('auth.logout') }}">Log out</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}">Log in</a>
+        {% endif %}
+    </header>
+
+    <main class="clearfix">
+      {% block content %} {% endblock %}
+    </main>
+
+    <footer>
+        <div class="rolunk">
+            <span>Rólunk</span>
+            <a href="#">Küldetésünk</a>
+            <a href="#">A szerzőkről</a>
+            <a href="#">Csatlakozz</a>
+            <a href="#">Kapcsolat</a>
+        </div>
+
+        <div class="feliratkozas">
+            <h2>Iratkozz fel</h2>
+            <form class="email-bar" action="">
+                <input type="email" name="feliratkozas" class="email-field" placeholder="Email címed">
+                <i class="fas fa-paper-plane email-button"></i>
+            </form>
+
+        </div>
+        <div class="logo">
+            <a href="{{ url_for('pages.index') }}">
+                <h1>Sola Materia</h1>
+                <h2>Egyedül az Anyag</h2>
+            </a>
+
+        </div>
+
+    </footer>
+{% block bodysource %} {% endblock %}
+</body>
+
+</html>

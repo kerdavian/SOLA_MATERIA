@@ -1,0 +1,34 @@
+{% extends 'base.html.j2' %}
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block headsource %} <link rel="stylesheet" href="../static/post_style.css"> {% endblock %}
+
+{% block content %}
+  {% if post.id is not defined %}
+    <h1>Nincsenek postok</h1>
+  {% else %}
+    <div class="post-header">
+      <div class="header-img">
+        <img src="/files/{{post.teaser_image}}" class="" alt="">
+      </div>
+      <div class="post-data">
+        <a href="#" class="single-post-category">Filozófia</a>
+      </div>
+      
+      <h1 class="single-post-title">{{ post.title }}</h1>
+     
+    </div>
+
+    <section class="single-post-body">
+      {{ post.body|safe }}
+
+    </section>
+
+    <a href="#" class="single-post-author">Csámpai Elemér</a>
+    
+    
+    
+  {% endif %}
+{% endblock %}
+
+{% block bodysource %} <script src="{{url_for('static', filename="submenu.js")}}"></script> {% endblock %}
