@@ -1,5 +1,5 @@
 {% extends 'base.html.j2' %}
-{% block title %} Nyitólap {% endblock %}
+{% block title %} Szezői postok {% endblock %}
 {%block headsource %}  
 {# <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> #}
 <link rel="stylesheet" href="../static/style_index.css"> 
@@ -18,44 +18,16 @@
   {% endfor %}
 
 
-<section class="posts">
-  {% for post in posts|selectattr("promoted", "equalto", True) %}
-    <div class="post promoted ">
-        <div class="post-data">
-            <div class="position-abs img-max">
-              <a href="/post/{{ post.id }}">
-                <img src="/files/{{post.teaser_image}}" alt="">
-              </a>
-                
-            </div>
-            <div class="other-data position-abs other-data-abs">
-                <div class="catauth">    
-                    {% if post.category_name == "Filozófia" %}
-                      <div class="post-category"><a href="{{ url_for('pages.filozofia') }}">{{ post.category_name }}</a></div>
-                    {% elif  post.category_name  == "Tudomány" %}
-                      <div class="post-category"><a href="{{ url_for('pages.tudomany') }}">{{ post.category_name }}</a></div>
-                    {% elif  post.category_name  == "Politika" %}
-                      <div class="post-category"><a href="{{ url_for('pages.politika') }}">{{ post.category_name }}</a></div>
-                    {% else %}
-                      <div class="post-category"><a href="{{ url_for('pages.versus') }}">{{ post.category_name }}</a></div>
-                    {% endif %}
-                    {# <div class="post-auther margin prom-abs"><a href="#" class="font">Csámpai Elemér</a></div> #}
-                </div>
-                <div class="title">
-                    <a class="font" href="/post/{{ post.id }}">{{post.title}}"</a>
-                </div>
-            </div>
-        </div>
-    </div>
-  {% endfor %}
 
-</section>
     {% if posts %}
-    <h3>Aktuális Postok</h3>
+    <h3>{{name}} postjai</h3>
+    
+     
+    
     {% endif %}
-
+{#  #}
 <section class="posts">
-  {% for post in posts|selectattr("promoted", "equalto", False) %}
+  {% for post in posts|selectattr("author_id", "equalto", id) %}
     <div class="post">
         <div class="post-data">
             <div class="img-div">

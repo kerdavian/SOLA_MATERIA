@@ -1,12 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField
+from wtforms import StringField, SubmitField, TextAreaField, BooleanField, RadioField
 from wtforms.validators import Length, Required
 from flask_wtf.file import FileField, FileAllowed
 from flask_ckeditor import CKEditorField
 
 
 class PostForm(FlaskForm):
-  title = StringField('Title', validators=[Length(min=4, max=35), Required()])
+  title = StringField('Title', validators=[Length(min=4, max=150), Required()])
   # body = TextAreaField(
   #     'Body',
   #     validators=[
@@ -22,9 +22,11 @@ class PostForm(FlaskForm):
   body = CKEditorField(
       'Body',
       validators=[
-          Length(min=50,
-                 max=4000,
+          Length(min=500,
+                 max=20000,
                  message=
                  "Body length must be between %(min)d and %(max)d characters")
       ])
   submit = SubmitField(label=('Create'))
+  promoted = BooleanField('Promoted')
+  category = RadioField()

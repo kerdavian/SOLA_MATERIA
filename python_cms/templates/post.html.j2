@@ -3,6 +3,20 @@
 
 {% block headsource %} <link rel="stylesheet" href="../static/post_style.css"> {% endblock %}
 
+  
+ 
+
+{% block navcontent %}
+  {% if post.author_id == current_user.id %}
+      <div class="auth-btns">
+        <a href="/post/delete/{{ post.id }}" class="single-post-btn">Törlés</a>
+        <a href="/post/edit/{{post.id}}" class="single-post-btn">Szerkesztés</a>
+      </div>
+  {% endif %}
+{% endblock %}
+
+
+
 {% block content %}
   {% if post.id is not defined %}
     <h1>Nincsenek postok</h1>

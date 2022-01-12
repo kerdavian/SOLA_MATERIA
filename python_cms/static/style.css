@@ -5,11 +5,14 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+  font-family: 'Oxanium', cursive;
 
   /* background-color: rgb(242, 237, 228); */
   background-color: rgb(255, 255, 255);
   margin: 0;
+
+  /* line-height: 1.7rem; */
 }
 
 header,
@@ -65,6 +68,7 @@ header {
 
 .menu-container {
   flex-grow: 1;
+  margin-top: 3px;
 }
 
 .menu {
@@ -153,14 +157,20 @@ header {
 .loged-in:hover > .loged-in-submenu {
   position: absolute;
   top: 70px;
-  height: 90px;
+
+  /* height: 120px; */
+
+  /* padding-bottom: 24px; */
   width: 220px;
   display: flex;
-  align-items: flex-end;
-  flex-direction: column;
+
+  /* align-items: flex-end; */
+  flex-direction: row;
+  justify-content: space-between;
   padding: 10px;
   border-top: 4px solid black;
-  border-right: 4px solid black;
+
+  /* border-right: 4px solid black; */
 }
 
 .loged-in-submenu > a:hover {
@@ -194,7 +204,7 @@ footer {
   border-top: 4px solid black;
   display: flex;
   justify-content: space-around;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 input {

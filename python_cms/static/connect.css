@@ -1,0 +1,73 @@
+h3 {
+  flex-grow: 1;
+  margin: 50px 0 50px 0;
+  justify-content: left;
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+h4 {
+  letter-spacing: 0.1rem;
+  text-decoration: underline;
+}
+
+.contact {
+  display: flex;
+  font-size: 1.2rem;
+}
+
+.info {
+  width: 55%;
+  text-align: justify;
+  margin-right: 80px;
+}
+
+.contact .info ul {
+  margin-top: 50px;
+}
+
+.contact .info ul li {
+  margin-bottom: 5px;
+}
+
+.send {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.send input,
+.input textarea {
+  border: 1px solid #e0e0e0;
+  font-size: 1.2rem;
+  height: 2.2rem;
+  margin-bottom: 25px;
+}
+
+.input textarea {
+  height: 100px;
+}
+
+.input input {
+  width: 400px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input span,
+.info > ul li {
+  letter-spacing: 0.1rem;
+}
+
+.button button {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  letter-spacing: 0.1rem;
+  width: 150px;
+  height: 40px;
+  margin-bottom: 30px;
+}

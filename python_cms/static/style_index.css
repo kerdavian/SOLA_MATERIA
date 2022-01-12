@@ -4,46 +4,108 @@
   position: relative;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 75vw;
+  width: 80vw;
   margin: 0 auto;
 }
 
 .post {
   background-color: transparent;
   box-sizing: border-box;
-  width: 24vw;
+  width: 30%;
+
+  /* max-width: 30%; */
   height: 350px;
   position: relative;
+  flex-grow: 1;
+  margin: 3px;
+
+  /* border: 1px solid; */
+}
+
+.position-abs {
+  position: absolute;
+}
+
+.promoted {
+  width: 45%;
+  height: 420px;
+  margin: 3px;
+  margin-top: 30px;
+
+  /* flex-grow: 1; */
+}
+
+h3 {
+  flex-grow: 1;
+  margin: 50px 0 50px 0;
+  justify-content: left;
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .post-data {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   background-color: transparent;
 }
 
+.other-data-abs {
+  bottom: 50px;
+}
+
 .other-data {
-  /* position: relative; */
   font-size: 12px;
   margin-top: 10px;
 }
 
 .img-div {
   width: 100%;
-  height: 65%;
+  height: 70%;
+}
+
+.img-max {
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
 }
 
 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+img:hover {
+  opacity: 0.7;
 }
 
 .catauth {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.margin {
+  margin: 15px;
+  align-items: center;
+}
+
+.catauth .prom-abs .font,
+.other-data-abs .title .font {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.title {
+  margin-top: 10px;
+}
+
+.other-data-abs .title {
+  margin-left: 15px;
 }
 
 .post-category {
@@ -54,6 +116,8 @@ img {
 
 .post-auther {
   font-weight: 600;
+  display: flex;
+  align-items: center;
 }
 
 .catauth a {
@@ -83,10 +147,6 @@ img {
 
 .post-auther a:hover {
   text-decoration: underline;
-}
-
-.title {
-  margin-top: 10px;
 }
 
 .title > a:hover {

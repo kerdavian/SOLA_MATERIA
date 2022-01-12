@@ -2,8 +2,6 @@
 
 {% block headsource %}
 <link rel="stylesheet" href="../static/create_post_style.css">
-<link rel="stylesheet" href="../static/switch.css">
-<link rel="stylesheet" href="../static/radio_buttons.css">
  {{ ckeditor.load() }}
  
 
@@ -13,7 +11,7 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-  <h1>Post létrehozása</h1>
+  <h1>Post szerkeztése</h1>
   {% for message in get_flashed_messages()  %}
    <div class="toast toast-success">
        <button class="btn btn-clear float-right"></button>
@@ -31,7 +29,8 @@
   {% endfor %}
 
 
-<form action="/add" method="POST" class="form-group clearfix" enctype="multipart/form-data">
+<form action="/post/edit/{{post_id}}" method="POST" class="form-group clearfix" enctype="multipart/form-data">
+  <input type="hidden" value="{{ form.teaser_image.data }}" name="original_teaser_image" id="originalTeaserImage">
   {# protect against csrf https://portswigger.net/web-security/csrf/tokens #}
   {{ form.csrf_token() }}
  
@@ -41,32 +40,21 @@
 
 
     <label class="design-for-label teaser" for="teaser_image"> {{ form.teaser_image.label }}</label>
+    {{ form.teaser_image(class="form-input hidden")}}
+
+    {% if form.teaser_image.data != "" %}
+      <img src="/files/{{post.teaser_image}}" id="edit-img" alt="">
+      <button id="delete-img-btn">Delete image</button>
+    {% else %}
     {{ form.teaser_image(class="form-input")}}
+  {% endif %} 
   </div>
-
-  <div>
-
-<div class="radioButton">
- {% for subfield in form.category %}
-  <label class="container">{{subfield.label.text}}
-    {{subfield}}
-    <input type="radio" name="radio">
-    <span class="checkmark"></span>
-  </label>
-  {% endfor %}
-</div>
-
-
 
   <label class="design-for-label" for="body" class="form-label"> {{ form.body.label }}</label>
   {{ form.body(class="form-input", id='body')}}
-  {{ form.submit(class="create-button", id="createPost")}}
 
-  <label class="switch">
-    <span class="prom-text">Kiemelés</span>
-    <input type="checkbox" name="promoted">
-    <span class="slider"></span>
-  </label>
+  <input type="submit" value="Save" class="btn btn-primary input-group-btn float-right", id="createOrEditPost">
+
 </form>
 
  {{ ckeditor.config(name='body') }}
@@ -75,7 +63,7 @@
 
 
 {% block bodysource %}
- <script src="{{url_for('static', filename="create_post.js")}}"></script>
+ <script src="{{url_for('static', filename="edit_post.js")}}"></script>
 {% endblock %}
 
 
