@@ -1,14 +1,15 @@
 {% extends 'base.html.j2' %}
-
+{# 
+{% block title %} Home {% endblock %}
 {% block headsource %}
-<link rel="stylesheet" href="../static/create_post_style.css">
+   <link rel="stylesheet" href="../static/create_post_style.css">
+  <link rel="stylesheet" href="../static/switch.css">
+  <link rel="stylesheet" href="../static/radio_buttons.css">
  {{ ckeditor.load() }}
- 
+
 
 {% endblock %}
 
-
-{% block title %} Home {% endblock %}
 
 {% block content %}
   <h1>Post szerkeztése</h1>
@@ -17,7 +18,7 @@
        <button class="btn btn-clear float-right"></button>
          {{message}}
    </div>
-   {% endfor %}
+  {% endfor %}
 
   {% for field, errors in form.errors.items() %}
     {% for error in errors %}
@@ -29,9 +30,9 @@
   {% endfor %}
 
 
-<form action="/post/edit/{{post_id}}" method="POST" class="form-group clearfix" enctype="multipart/form-data">
+<form action="/post/edit/{{post.id}}" method="POST" class="form-group clearfix" enctype="multipart/form-data">
   <input type="hidden" value="{{ form.teaser_image.data }}" name="original_teaser_image" id="originalTeaserImage">
-  {# protect against csrf https://portswigger.net/web-security/csrf/tokens #}
+  protect against csrf https://portswigger.net/web-security/csrf/tokens
   {{ form.csrf_token() }}
  
   <div class="form">
@@ -53,7 +54,7 @@
   <label class="design-for-label" for="body" class="form-label"> {{ form.body.label }}</label>
   {{ form.body(class="form-input", id='body')}}
 
-  <input type="submit" value="Save" class="btn btn-primary input-group-btn float-right", id="createOrEditPost">
+  <input type="submit" value="Save" class="", id="createOrEditPost">
 
 </form>
 
@@ -68,4 +69,4 @@
 
 
 
-
+ #}

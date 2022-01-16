@@ -1,6 +1,5 @@
 {% extends 'base.html.j2' %}
-{% block title %} Filozófia {% endblock %}
-
+{% block title %} Szezői postok {% endblock %}
 {%block headsource %}  
 {# <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> #}
 <link rel="stylesheet" href="../static/style_index.css"> 
@@ -17,13 +16,18 @@
          {{message}}
    </div>
   {% endfor %}
-      {% if posts %}
-    <h3>Filozófia</h3>
+
+
+
+    {% if posts %}
+    <h3>{{name}} postjai</h3>
+    
+     
+    
     {% endif %}
-
+{#  #}
 <section class="posts">
-
-  {% for post in posts|selectattr("category_name", "equalto", "Filozófia") %}
+  {% for post in posts|selectattr("author_id", "equalto", id) %}
     <div class="post">
         <div class="post-data">
             <div class="img-div">
@@ -34,7 +38,7 @@
             </div>
             <div class="other-data">
                 <div class="catauth">
-                    <div class="post-category"><a href="#" >{{ post.category_name }}</a></div>
+                    <div class="post-category"><a href="/posts/{{ post.category_name }}">{{ post.category_name }}</a></div>      
                     <div class="post-auther"><a href="/author/{{post.author_id}}">{{post.author.name}}</a></div>
                 </div>
                 <div class="title">
@@ -44,8 +48,11 @@
         </div>
     </div>
   {% endfor %}
-
 </section>
-
-
 {% endblock %}
+
+{% block bodysource %} <script src="{{url_for('static', filename="pic-flex.js")}}"></script> 
+{% endblock %}
+
+
+

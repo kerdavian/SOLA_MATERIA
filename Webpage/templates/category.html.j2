@@ -1,5 +1,6 @@
 {% extends 'base.html.j2' %}
-{% block title %} Szezői postok {% endblock %}
+{% block title %} Filozófia {% endblock %}
+
 {%block headsource %}  
 {# <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> #}
 <link rel="stylesheet" href="../static/style_index.css"> 
@@ -16,18 +17,13 @@
          {{message}}
    </div>
   {% endfor %}
-
-
-
-    {% if posts %}
-    <h3>{{name}} postjai</h3>
-    
-     
-    
+      {% if posts %}
+    <h3>{{category}}</h3>
     {% endif %}
-{#  #}
+
 <section class="posts">
-  {% for post in posts|selectattr("author_id", "equalto", id) %}
+
+  {% for post in posts|selectattr("category_name", "equalto", category) %}
     <div class="post">
         <div class="post-data">
             <div class="img-div">
@@ -38,16 +34,7 @@
             </div>
             <div class="other-data">
                 <div class="catauth">
-                    {% if post.category_name == "Filozófia" %}
-                      <div class="post-category"><a href="{{ url_for('pages.filozofia') }}">{{ post.category_name }}</a></div>
-                    {% elif  post.category_name  == "Tudomány" %}
-                      <div class="post-category"><a href="{{ url_for('pages.tudomany') }}">{{ post.category_name }}</a></div>
-                    {% elif  post.category_name  == "Politika" %}
-                      <div class="post-category"><a href="{{ url_for('pages.politika') }}">{{ post.category_name }}</a></div>
-                    {% else %}
-                      <div class="post-category"><a href="{{ url_for('pages.versus') }}">{{ post.category_name }}</a></div>
-                    {% endif %}
-                            
+                    <div class="post-category"><a href="#" >{{ post.category_name }}</a></div>
                     <div class="post-auther"><a href="/author/{{post.author_id}}">{{post.author.name}}</a></div>
                 </div>
                 <div class="title">
@@ -57,11 +44,8 @@
         </div>
     </div>
   {% endfor %}
+
 </section>
+
+
 {% endblock %}
-
-{% block bodysource %} <script src="{{url_for('static', filename="pic-flex.js")}}"></script> 
-{% endblock %}
-
-
-

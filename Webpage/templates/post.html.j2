@@ -4,8 +4,6 @@
 {% block headsource %} <link rel="stylesheet" href="../static/post_style.css"> {% endblock %}
 
   
- 
-
 {% block navcontent %}
   {% if post.author_id == current_user.id %}
       <div class="auth-btns">
@@ -14,7 +12,6 @@
       </div>
   {% endif %}
 {% endblock %}
-
 
 
 {% block content %}
@@ -26,7 +23,7 @@
         <img src="/files/{{post.teaser_image}}" class="" alt="">
       </div>
       <div class="post-data">
-        <a href="#" class="single-post-category">Filozófia</a>
+        <a href="/posts/{{post.category_name}}" class="single-post-category">{{post.category_name}}</a>
       </div>
       
       <h1 class="single-post-title">{{ post.title }}</h1>
@@ -38,7 +35,7 @@
 
     </section>
 
-    <a href="#" class="single-post-author">Csámpai Elemér</a>
+    <a href="/author/{{post.author_id}}" class="single-post-author">{{post.author.name}}</a>
     
     
     

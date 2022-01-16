@@ -16,34 +16,25 @@ import bleach  # https://bleach.readthedocs.io/en/latest/
 pages_blueprint = Blueprint("pages", __name__)
 
 
+def get_post_author(posts, id):
+  for post in posts:
+    if post.author_id == id:
+      name = post.author.name
+      return name
+
+
 @pages_blueprint.route("/")
 def index():
   posts = PostModel.get_all()
   return render_template('index.html.j2', posts=posts)
 
 
-@pages_blueprint.route("/filozofia")
-def filozofia():
+@pages_blueprint.route("/posts/<string:category_name>")
+def category(category_name):
   posts = PostModel.get_all()
-  return render_template('filozofia.html.j2', posts=posts)
-
-
-@pages_blueprint.route("/tudomany")
-def tudomany():
-  posts = PostModel.get_all()
-  return render_template('tudomany.html.j2', posts=posts)
-
-
-@pages_blueprint.route("/politika")
-def politika():
-  posts = PostModel.get_all()
-  return render_template('politika.html.j2', posts=posts)
-
-
-@pages_blueprint.route("/versus")
-def versus():
-  posts = PostModel.get_all()
-  return render_template('versus.html.j2', posts=posts)
+  return render_template('category.html.j2',
+                         posts=posts,
+                         category=category_name)
 
 
 @pages_blueprint.route('/mission')
@@ -69,11 +60,7 @@ def connection():
 @pages_blueprint.route('/author/<string:id>')
 def auth_post(id):
   posts = PostModel.get_all()
-  name = ""
-  # for post in posts:
-  #   if post.author_id == id:
-  #     name = post.author.name
-  #     break
+  name = get_post_author(posts, id)
   return render_template('author_post.html.j2', posts=posts, id=id, name=name)
 
 
@@ -148,41 +135,43 @@ def delete_post(post_id):
   return redirect(url_for('pages.index'))
 
 
-@pages_blueprint.route('/post/edit/<string:post_id>', methods=['GET', 'POST'])
-@login_required
+@pages_blueprint.route('/post/edit/<string:post_id>')
 def edit_post(post_id):
-  post = PostModel.get(post_id)
-  if post.author_id != current_user.get_id():
-    return "Csak bejelentkezett felhasználók szerkeszthetik a posztot", 403
+  return render_template("edit.html.j2")
 
-  form = PostForm()
-  if request.method == 'POST' and form.validate_on_submit():
-    unescaped_body = html.unescape(request.form.get('body'))
-    clean_body = bleach.clean(unescaped_body,
-                              tags=bleach.sanitizer.ALLOWED_TAGS +
-                              ['div', 'br', 'p', 'h1', 'h2', 'img', 'h3'],
-                              attributes=['src', 'alt', 'style'])
 
-    body = clean_body
-    title = request.form.get('title')
-    file = request.files['teaser_image']
+# @pages_blueprint.route('/post/edit/<string:post_id>', methods=['GET', 'POST'])
+# @login_required
+# def edit_post(post_id):
+#   post = PostModel.get(post_id)
+#   if post.author_id != current_user.get_id():
+#     return "Csak bejelentkezett felhasználók szerkeszthetik a posztot", 403
 
-    # filename = secure_filename(file.filename)
-    filename = request.form.get('original_teaser_image')
-    file.save(os.path.join(python_cms.ROOT_PATH, 'files_upload', filename))
-    post.title = title
-    post.body = body
-    post.author_id = current_user.get_id()
-    post.teaser_image = filename
+#   form = PostForm()
+#   if request.method == 'POST' and form.validate_on_submit():
+#     unescaped_body = html.unescape(request.form.get('body'))
+#     clean_body = bleach.clean(unescaped_body,
+#                               tags=bleach.sanitizer.ALLOWED_TAGS +
+#                               ['div', 'br', 'p', 'h1', 'h2', 'img', 'h3'],
+#                               attributes=['src', 'alt', 'style'])
 
-    post.save()
-    flash(f'Post with title: {title} is created')
-    return redirect(url_for('pages.index'))
+#     body = clean_body
+#     title = request.form.get('title')
+#     file = request.files['teaser_image']
 
-  form.title.data = post.title
-  form.teaser_image.data = post.teaser_image
-  form.body.data = post.body
-  return render_template('edit_post.html.j2',
-                         form=form,
-                         post=post,
-                         post_id=post_id)
+#     # filename = secure_filename(file.filename)
+#     filename = request.form.get('original_teaser_image')
+#     file.save(os.path.join(python_cms.ROOT_PATH, 'files_upload', filename))
+#     post.title = title
+#     post.body = body
+#     post.author_id = current_user.get_id()
+#     post.teaser_image = filename
+
+#     post.save()
+#     flash(f'Post with title: {title} is created')
+#     return redirect(url_for('pages.index'))
+
+#   form.title.data = post.title
+#   form.teaser_image.data = post.teaser_image
+#   form.body.data = post.body
+#   return render_template('edit.html.j2', form=form, post=post, post_id=post_id)

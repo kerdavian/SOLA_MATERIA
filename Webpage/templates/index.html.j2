@@ -30,15 +30,7 @@
             </div>
             <div class="other-data position-abs other-data-abs">
                 <div class="catauth">    
-                    {% if post.category_name == "Filozófia" %}
-                      <div class="post-category"><a href="{{ url_for('pages.filozofia') }}">{{ post.category_name }}</a></div>
-                    {% elif  post.category_name  == "Tudomány" %}
-                      <div class="post-category"><a href="{{ url_for('pages.tudomany') }}">{{ post.category_name }}</a></div>
-                    {% elif  post.category_name  == "Politika" %}
-                      <div class="post-category"><a href="{{ url_for('pages.politika') }}">{{ post.category_name }}</a></div>
-                    {% else %}
-                      <div class="post-category"><a href="{{ url_for('pages.versus') }}">{{ post.category_name }}</a></div>
-                    {% endif %}
+                <div class="post-category"><a href="/posts/{{post.category_name}}">{{ post.category_name }}</a></div>            
                     {# <div class="post-auther margin prom-abs"><a href="#" class="font">Csámpai Elemér</a></div> #}
                 </div>
                 <div class="title">
@@ -66,16 +58,7 @@
             </div>
             <div class="other-data">
                 <div class="catauth">
-                    {% if post.category_name == "Filozófia" %}
-                      <div class="post-category"><a href="{{ url_for('pages.filozofia') }}">{{ post.category_name }}</a></div>
-                    {% elif  post.category_name  == "Tudomány" %}
-                      <div class="post-category"><a href="{{ url_for('pages.tudomany') }}">{{ post.category_name }}</a></div>
-                    {% elif  post.category_name  == "Politika" %}
-                      <div class="post-category"><a href="{{ url_for('pages.politika') }}">{{ post.category_name }}</a></div>
-                    {% else %}
-                      <div class="post-category"><a href="{{ url_for('pages.versus') }}">{{ post.category_name }}</a></div>
-                    {% endif %}
-                            
+                    <div class="post-category"><a href="/posts/{{post.category_name}}">{{ post.category_name }}</a></div>    
                     <div class="post-auther"><a href="/author/{{post.author_id}}">{{post.author.name}}</a></div>
                 </div>
                 <div class="title">

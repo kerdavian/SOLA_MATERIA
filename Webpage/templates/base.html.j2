@@ -19,6 +19,7 @@
 
 
     {# <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> #}
+    
     <link rel="stylesheet" href="../static/style.css">
     {% block headsource %} {% endblock %}
 </head>
@@ -43,10 +44,10 @@
             <!-- nav.menu-container>ul.menu>(li.menu-item>a[href="#"])*5 -->
             <nav class="menu-container">
                 <ul class="menu">
-                    <li class="menu-item"><a href="{{ url_for('pages.filozofia') }}">Filozófia</a></li>
-                    <li class="menu-item"><a href="{{ url_for('pages.tudomany') }}">Tudomány</a></li>
-                    <li class="menu-item"><a href="{{ url_for('pages.politika') }}">Politika</a></li>
-                    <li class="menu-item"><a href="{{ url_for('pages.versus') }}">Versus</a></li>
+                    <li class="menu-item"><a href="/posts/Filozófia">Filozófia</a></li>
+                    <li class="menu-item"><a href="/posts/Tudomány">Tudomány</a></li>
+                    <li class="menu-item"><a href="/posts/Politika">Politika</a></li>
+                    <li class="menu-item"><a href="/posts/Versus">Versus</a></li>
                 </ul>
 
                 {% block navcontent %} {% endblock %}
