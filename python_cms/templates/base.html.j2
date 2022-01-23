@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    {# <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css" /> #}
+    {# <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" /> #}
+    {# <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" /> #}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    {# <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet"> #}
+    {# <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> #}
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+
+    {# <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> #}
+    
+
+    {% block headsource %} {% endblock %}
+</head>
+
+<body>
+    <header>
+
+        <div class="header-nav">
+            <div class="logo">
+                <a href="{{ url_for('pages.index') }}">
+                    <h1>Sola Materia</h1>
+                    <h2>Egyedül az Anyag</h2>
+                </a>
+            </div>
+            <!-- nav.menu-container>ul.menu>(li.menu-item>a[href="#"])*5 -->
+            <div class="kategoria-div" id="kategoria">
+                    {% if current_user.is_authenticated %}
+                        <li class="kategoria">Bejelentkezve: {{current_user.name}}</li>
+                    {% else %}
+                    <li class="kategoria">MENÜ</li>
+                    {% endif %}
+            </div>
+            <nav class="menu-container">
+                <ul class="menu">
+                    
+                        <li class="menu-item main-menu-item"><a href="/posts/Filozófia">Filozófia</a></li>
+                        <li class="menu-item main-menu-item"><a href="/posts/Tudomány">Tudomány</a></li>
+                        <li class="menu-item main-menu-item"><a href="/posts/Politika">Politika</a></li>
+                        <li class="menu-item main-menu-item"><a href="/posts/Versus">Versus</a></li>
+                    
+                  
+                        {% block menucontent%} {% endblock %}
+                   
+                    {% if current_user.is_authenticated %}
+                   
+                        <li class="menu-item menu-create-post"><a href="{{ url_for('pages.create_post') }}">Create Post</a></li>
+                        <li class="menu-item menu-log-out"><a href="{{ url_for('auth.logout') }}">Log out</a></li>
+                        <div></div>
+                 
+                    {% else %}
+                  
+                        <li class="menu-item menu-log-in"><a href="{{ url_for('auth.login') }}">Log in</a></li>
+
+                    {% endif %}
+                </ul>
+
+                {% block navcontent %} {% endblock %}
+            </nav>
+
+            
+        </div>
+        <div class="log-in">
+            {% if current_user.is_authenticated %}
+                <div class="chip loged-in">
+                    <div class="user-data">
+                        <img class="user-pic" src="{{ current_user.profile_pic }}" alt="">
+                        <div class="current-user">{{ current_user.name }}</div>
+                    </div>
+                    <div class="loged-in-submenu">
+                        <a class="create-post" href="{{ url_for('pages.create_post') }}">Create Post</a>
+                        <a class="log-out" href="{{ url_for('auth.logout') }}">Log out</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}">Log in</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="clearfix">
+      {% block content %} {% endblock %}
+        {# <div class="center">
+    <div class="pagination">
+      <!-- &laquo; -->
+      <a href="#" class="page-num" id="prev">&laquo; Előző
+        <!-- <ion-icon name="play-outline"></ion-icon> -->
+      </a>
+      <a href="#" class="page-num">1</a>
+      <a href="#" class="active page-num">2</a>
+      <a href="#" class="page-num">3</a>
+      <a href="#" class="page-num">4</a>
+      <a href="#" class="page-num">5</a>
+      <a href="#" class="page-num">6</a>
+      <a href="#" class="page-num" id="next">Következő &raquo;</a>
+    </div>
+  </div> #}
+
+    </main>
+
+    <footer>
+    {# <div class="rolunk-fel"> #}
+        <div class="rolunk">
+            <span>Rólunk</span>
+            <a href="{{ url_for('pages.mission') }}">Küldetésünk</a>
+            <a href="{{ url_for('pages.about_authors') }}">A szerzőkről</a>
+            {# <a href="{{ url_for('pages.connect_us') }}">Csatlakozz</a> #}
+            <a href="{{ url_for('pages.connection') }}">Kapcsolat</a>
+        </div>
+
+        <div class="feliratkozas">
+            <h2>Iratkozz fel</h2>
+            <form class="email-bar" action="/subscribe" method="POST">
+                <input type="email" name="feliratkozas" class="email-field" placeholder="Email címed">
+                <a href="#"><i class="fas fa-paper-plane email-button"></i></a>
+            </form>
+
+        </div>
+    {# </div> #}
+        
+    <div class="logo">
+        <a href="{{ url_for('pages.index') }}">
+            <h1>Sola Materia</h1>
+            <h2>Egyedül az Anyag</h2>
+        </a>
+
+    </div>
+
+    </footer>
+    <script src="../static/menu.js"></script>
+{% block bodysource %} {% endblock %}
+</body>
+
+</html>

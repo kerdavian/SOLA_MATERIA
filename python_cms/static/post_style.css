@@ -1,0 +1,172 @@
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+main {
+  width: 100%;
+}
+
+.auth-btns {
+  /* position: absolute; */
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.auth-btns .nav-auth-btn {
+  display: none;
+}
+
+.single-post-btn {
+  text-decoration: none;
+
+  /* flex-grow: 1; */
+  display: flex;
+  justify-content: center;
+  letter-spacing: 0.1rem;
+  color: rgba(90, 86, 79, 1);
+  font-size: 1.2rem;
+}
+
+.single-post-btn:hover {
+  color: black;
+  font-weight: 600;
+}
+
+.post-header {
+  height: 400px;
+  position: relative;
+}
+
+.header-img,
+.post-data,
+.post-header > h1,
+.single-post-title {
+  position: absolute;
+}
+
+.header-img {
+  width: 100%;
+  height: 85%;
+  margin-top: 30px;
+}
+
+.header-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.single-post-title,
+.post-data {
+  margin-left: 8rem;
+}
+
+.single-post-title {
+  color: white;
+  left: 25px;
+  bottom: 80px;
+  font-size: 2.2rem;
+  text-transform: capitalize;
+  letter-spacing: 8px;
+  font-style: italic;
+}
+
+.post-data {
+  background-color: white;
+  padding: 4px;
+  font-size: 1em;
+  left: 25px;
+  bottom: 170px;
+  border-radius: 5%;
+
+  /* color: white; */
+}
+
+.post-data > a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.post-data > a:hover {
+  text-decoration: underline;
+}
+
+.single-post-body {
+  width: 70vw;
+  margin: 0 auto;
+}
+
+.single-post-author {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 600;
+  float: right;
+  margin-bottom: 20px;
+}
+
+.single-post-author:hover {
+  text-decoration: underline;
+}
+
+.single-post-tags {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.single-post-tags a {
+  text-decoration: none;
+  color: black;
+  margin: 10px;
+  font-weight: 600;
+}
+
+.single-post-tags a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1200px) {
+  .auth-btns {
+    width: 45%;
+    margin: 0 auto;
+  }
+
+  .auth-btns .nav-del,
+  .auth-btns .nav-edit {
+    display: none;
+  }
+
+  .auth-btns .nav-auth-btn {
+    display: flex;
+    margin: 15px 0;
+    padding: 0 15px;
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+  }
+
+  .auth-btns:hover .nav-auth-btn {
+    display: none;
+  }
+
+  .auth-btns:hover .nav-del,
+  .auth-btns:hover .nav-edit {
+    display: flex;
+    margin: 15px 0;
+    padding: 0 15px;
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+  }
+}
+
+@media (max-width: 800px) {
+  .auth-btns {
+    display: none;
+  }
+}

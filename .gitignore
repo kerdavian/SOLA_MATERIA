@@ -4,6 +4,6 @@ __pycache__
 .vim
 .flaskenv
 files_upload
-data.db
+
 .DS_Store
 node_modules

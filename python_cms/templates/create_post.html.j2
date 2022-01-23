@@ -1,0 +1,129 @@
+{% extends 'base.html.j2' %}
+
+{% block headsource %}
+<link rel="stylesheet" href="{{ url_for('static', filename='create_post_style.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='switch.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='radio_buttons.css') }}" />
+ {{ ckeditor.load() }}
+ 
+
+{% endblock %}
+
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+  <h1>Post létrehozása</h1>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == "error"%}
+        <div class="toast toast-error">
+            <button class="btn-error">close</button>
+              {{message}}
+        </div>
+      {% else %}
+        <div class="toast toast-success">
+        <button class="btn-success">close</button>
+          {{message}}
+      </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+
+{# {% for message in get_flashed_messages(with_categories=true)  %}
+   <div class="toast toast-success">
+       <button class="btn-success">close</button>
+         {{message}}
+   </div>
+   {% endfor %} #}
+
+  {% for field, errors in form.errors.items() %}
+    {% for error in errors %}
+      <div class="toast toast-error">
+          <button class="btn-error">close</button>
+            {{error}}
+      </div>
+    {% endfor %}
+  {% endfor %}
+
+
+<form action="/add" method="POST" class="form-group clearfix" enctype="multipart/form-data">
+  {# protect against csrf https://portswigger.net/web-security/csrf/tokens #}
+  {{ form.csrf_token() }}
+ 
+  <div class="form">
+    <label class="design-for-label" for="title">{{ form.title.label }}</label>
+    {{ form.title(class="form-input", placeholder="Title")}}
+
+
+    <label class="design-for-label teaser" for="teaser_image"> {{ form.teaser_image.label }}</label>
+    {{ form.teaser_image(class="form-input")}}
+  </div>
+
+  <div>
+
+  <div class="radioButton">
+  {% for subfield in form.category %}
+    <label class="container">{{subfield.label.text}}
+      {{subfield}}
+      <input type="radio" name="radio">
+      <span class="checkmark"></span>
+    </label>
+    {% endfor %}
+  </div>
+
+
+
+  <label class="design-for-label" for="body" class="form-label"> {{ form.body.label }}</label>
+  {{ form.body(class="form-input", id='body')}}
+  {{ form.submit(class="create-button", id="createPost")}}
+
+  <label class="switch">
+    <span class="prom-text">Kiemelés</span>
+    <input type="checkbox" name="promoted">
+    <span class="slider"></span>
+  </label>
+
+{# <form action="../static/tag_add.py"> #}
+  <div class="select-container">
+    <label for="">Tags</label>
+    <select id="tags">
+      {% for tag in tags%}
+      <option>{{tag.tag_name}}</option>
+      {# <option value="Materializmus">Materializmus</option>
+      <option value="Fizikalizmus">Fizikalizmus</option>
+      <option value="Marx">Marx</option>
+      <option value="Engels">Engels</option> #}
+      {% endfor %}
+    </select>
+    <label id="tag-ok">OK</label>
+  </div>
+{# </form> #}
+
+
+<div id="tag-elements"></div>
+{# <input type="text" name="added-tags" value="" id="tags-for-python"> #}
+{# <label for="added-tags">{{form.added_tags.name}}</label> #}
+{{ form.added_tags(id="tags-for-python") }}
+
+
+</form>
+
+ {{ ckeditor.config(name='body') }}
+
+{% endblock %}
+
+
+{% block bodysource %}
+ <script src="{{url_for('static', filename="create_post.js")}}"></script>
+ <script src="{{url_for('static', filename="remove_toast.js")}}"></script>
+ <script src="{{url_for('static', filename="tag.js")}}"></script>
+{% endblock %}
+
+
+
+

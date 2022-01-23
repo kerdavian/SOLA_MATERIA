@@ -1,0 +1,43 @@
+{% extends 'base.html.j2' %}
+{% block title %} Sszerzőkről {% endblock %}
+
+{%block headsource %}  
+{# <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> #}
+{# <link rel="stylesheet" href="{{ url_for('static', filename='author.css') }}" /> #}
+{% endblock %}
+
+{% block content %}
+    <h3>Szerzőinkról</h3>
+
+    <div class="authors">
+        {% for auth in auths %}
+            <div class="author">
+                <a href="#">
+                    {# <img src="{{url_for('static', filename='marx_2.jpg')}}" alt="szerző" width="500" height="600"> #}
+                    <img src="/static/{{auth.profile_pic}}" alt="szerző" width="500" height="600">
+
+                </a>
+
+
+
+                 <ul>
+                            <li>{{auth.name}}</li>
+                            <li>{{auth.vegzettseg}}</li>
+                            <li>{{auth.tema}}</li>
+                            <li>{{auth.bemutatkozas}}</li>
+                        </ul>
+        {% endfor %}
+
+
+                    <div class="author-data">
+                        <ul>
+                            <li>Név</li>
+                            <li>Végzettség</li>
+                            <li>Kedvenc téma</li>
+                            <li>Rövid bemutatkozás</li>
+                        </ul>
+                    </div>
+        </div>
+    </div>
+
+{% endblock %}

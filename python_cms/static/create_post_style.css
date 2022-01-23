@@ -1,0 +1,140 @@
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.ck-editor__editable_inline {
+  min-height: 400px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.design-for-label {
+  font-weight: 600;
+}
+
+.form-input {
+  width: auto;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+}
+
+#delete-img-btn {
+  width: 150px;
+  height: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: none;
+  background-color: black;
+  color: white;
+  letter-spacing: 0.1rem;
+}
+
+#delete-img-btn:hover {
+  cursor: pointer;
+}
+
+.create-button {
+  /* width: 100px;
+  border-radius: 0;
+  background-color: black;
+  color: white;
+  margin: 20px; */
+
+  background-color: rgb(0, 0, 0);
+  color: white;
+  letter-spacing: 0.1rem;
+  width: 150px;
+  height: 40px;
+  margin: 30px 0 30px 0;
+  float: right;
+}
+
+.create-button:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.prom-text {
+  position: absolute;
+  left: 42px;
+  top: 3px;
+  font-weight: 600;
+}
+
+.select-container {
+  display: flex;
+  margin-top: 20px;
+  height: 30px;
+  width: 50%;
+  align-items: center;
+}
+
+#tags {
+  height: 30px;
+  width: 300px;
+  font-weight: 600;
+  color: black;
+  letter-spacing: 0.1rem;
+}
+
+#t-submit {
+  width: 40px;
+  background-color: black;
+  color: white;
+  letter-spacing: 0.1rem;
+  margin-left: 5px;
+}
+
+.select-container label {
+  margin-right: 5px;
+  margin-left: 5px;
+  color: black;
+  font-weight: 600;
+}
+
+#tag-elements {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: auto;
+}
+
+#tag-elements .tag {
+  /* position: relative; */
+  background-color: black;
+  font-size: 0.8rem;
+  color: white;
+  padding: 7px;
+  letter-spacing: 0.1rem;
+  line-height: 1.9rem;
+  margin: 2px;
+  width: auto;
+}
+
+#tag-elements > span a {
+  /* position: absolute; */
+
+  padding: 3px;
+  color: white;
+  font-weight: 600;
+
+  /* font-size: 1rem; */
+  margin-top: 5px;
+  text-decoration: none;
+}
+
+#tag-ok {
+  cursor: pointer;
+}
+
+#tag-ok:hover {
+  font-weight: 800;
+}
