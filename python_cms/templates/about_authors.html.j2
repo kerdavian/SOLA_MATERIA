@@ -14,18 +14,15 @@
             <div class="author">
                 <a href="#">
                     {# <img src="{{url_for('static', filename='marx_2.jpg')}}" alt="szerző" width="500" height="600"> #}
-                    <img src="/static/{{auth.profile_pic}}" alt="szerző" width="500" height="600">
+                    {# <img src="/static/{{auth.profile_pic}}" alt="szerző" width="500" height="600"> #}
 
                 </a>
-
-
-
                  <ul>
-                            <li>{{auth.name}}</li>
-                            <li>{{auth.vegzettseg}}</li>
-                            <li>{{auth.tema}}</li>
-                            <li>{{auth.bemutatkozas}}</li>
-                        </ul>
+                    <li>{{auth.name}}</li>
+                    <li>{{auth.vegzettseg}}</li>
+                    <li>{{auth.tema}}</li>
+                    <li>{{auth.bemutatkozas}}</li>
+                </ul>
         {% endfor %}
 
 

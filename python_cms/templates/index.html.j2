@@ -1,5 +1,6 @@
 {% extends 'base.html.j2' %}
 {% block title %} Nyitólap {% endblock %}
+
 {%block headsource %}  
 {# <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> #}
 <link rel="stylesheet" href="{{ url_for('static', filename='style_index.css') }}" />
@@ -10,7 +11,7 @@
 
 {% block content %}
   {% if posts|length == 0 %}
-  <h1 class="no-posts">Nincsenek bejegyzések</h1>
+    <h1 class="no-posts">Nincsenek bejegyzések</h1>
   {% endif %}
 
   {% for message in get_flashed_messages()  %}
@@ -24,7 +25,7 @@
 
 <section class="posts">
   {% for post in posts|selectattr("promoted", "equalto", True) %}
-    <div class="post promoted ">
+    <article class="post promoted ">
         <div class="post-data"> {#relatív#}
             <div class="position-abs img-max">
               <a href="/post/{{ post.id }}">
@@ -42,7 +43,7 @@
                     <a class="font" href="/post/{{ post.id }}">{{post.title}}"</a>
                 </div>
             </div>
-        </div>
+        </article>
     </div>
   {% endfor %}
 
@@ -53,7 +54,7 @@
 
 <section class="posts container">
   {% for post in posts|selectattr("promoted", "equalto", False) %}
-    <div class="post">
+    <article class="post">
         <div class="post-data">
             <div class="img-div">
             <a href="/post/{{ post.id }}">
@@ -73,7 +74,7 @@
                     <a href="/post/{{ post.id }}">{{post.title}}"</a>
                 </div>
             </div>
-        </div>
+        </article>
     </div>
   {% endfor %}
 </section>

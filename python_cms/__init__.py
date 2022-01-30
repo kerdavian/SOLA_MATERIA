@@ -19,8 +19,9 @@ app = Flask(__name__)
 ROOT_PATH = app.root_path
 
 # database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DB_URL')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = environ.get(
+    'SQLALCHEMY_TRACK_MODIFICATIONS')
 db.init_app(app)
 
 # this will enable autoreload if the html files change

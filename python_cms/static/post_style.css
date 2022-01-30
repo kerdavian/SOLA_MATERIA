@@ -16,6 +16,11 @@ main {
   cursor: pointer;
 }
 
+.menu-del,
+.menu-edit {
+  display: none;
+}
+
 .auth-btns .nav-auth-btn {
   display: none;
 }

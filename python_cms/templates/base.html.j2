@@ -27,7 +27,6 @@
 
 <body>
     <header>
-
         <div class="header-nav">
             <div class="logo">
                 <a href="{{ url_for('pages.index') }}">
@@ -50,27 +49,21 @@
                         <li class="menu-item main-menu-item"><a href="/posts/Tudomány">Tudomány</a></li>
                         <li class="menu-item main-menu-item"><a href="/posts/Politika">Politika</a></li>
                         <li class="menu-item main-menu-item"><a href="/posts/Versus">Versus</a></li>
-                    
-                  
+
+                   {% if current_user.is_authenticated %}
                         {% block menucontent%} {% endblock %}
-                   
-                    {% if current_user.is_authenticated %}
-                   
                         <li class="menu-item menu-create-post"><a href="{{ url_for('pages.create_post') }}">Create Post</a></li>
                         <li class="menu-item menu-log-out"><a href="{{ url_for('auth.logout') }}">Log out</a></li>
                         <div></div>
-                 
                     {% else %}
-                  
                         <li class="menu-item menu-log-in"><a href="{{ url_for('auth.login') }}">Log in</a></li>
-
                     {% endif %}
                 </ul>
 
                 {% block navcontent %} {% endblock %}
+
             </nav>
 
-            
         </div>
         <div class="log-in">
             {% if current_user.is_authenticated %}
@@ -139,6 +132,7 @@
     </div>
 
     </footer>
+
     <script src="../static/menu.js"></script>
 {% block bodysource %} {% endblock %}
 </body>

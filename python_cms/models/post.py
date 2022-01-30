@@ -15,7 +15,7 @@ class PostModel(BaseModel):
   # one post can have only one author
   author = db.relationship('UserModel', back_populates='posts')
   category = db.relationship('CategoryModel', back_populates='posts')
-
+  # many to mayn kapcsolat
   tags = db.relationship('PostTagLink', back_populates='post')
 
   def __init__(self, title, body, user_id, teaser_image, promoted, category_id,

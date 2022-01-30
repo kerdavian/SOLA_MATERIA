@@ -16,7 +16,7 @@ function render(tag, index) {
     const markup = `
     <span class="tag">
       <a class="tag-name" href="#">${tag}</a>
-      <i id=${index} class="fas fa-times"></i>
+      <i id=${index} class="fas fa-times del-tag"></i>
     </span> 
     `;
 

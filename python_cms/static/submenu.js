@@ -1,1 +1,0 @@
-document.querySelector(".loged-in-submenu").style.width = "250px"

@@ -29,6 +29,12 @@ h4 {
 
 .contact .info ul li {
   margin-bottom: 5px;
+  font-style: normal;
+}
+
+.contact .info ul li a {
+  text-decoration: none;
+  color: black;
 }
 
 .send {

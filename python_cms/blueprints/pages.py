@@ -85,6 +85,7 @@ def connect_us():
 def connection():
   form = ContactForm()
   if request.method == 'POST' and form.validate_on_submit():
+    # https://www.tutorialspoint.com/send-mail-from-your-gmail-account-using-python
     email = request.form.get("email")
     mail_content = request.form.get("message")
     subject = request.form.get("subject")
@@ -196,12 +197,14 @@ def create_post():
 
     post.save()
 
-    posts = PostModel.get_all()
-    print(posts[len(posts) - 1].id)
+    print()
+
+    # posts = PostModel.get_all()
+    # print(posts[len(posts) - 1].id)
     for tag in tags:
-      print(tag)
+      # print(tag)
       tag_m = TagModel.get_by_name(tag)
-      save_tag = PostTagLink(posts[len(posts) - 1].id, tag_m.id, tag)
+      save_tag = PostTagLink(post.id, tag_m.id, tag)
       save_tag.save()
 
     flash(f'Post with title: {title} is created')

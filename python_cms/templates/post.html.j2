@@ -4,15 +4,12 @@
 {% block headsource %}  <link rel="stylesheet" href="{{ url_for('static', filename='post_style.css') }}" /> {% endblock %}
 
 {% if current_user.is_authenticated %}  
-{{current_user.id}}
+{# {{current_user.id}} #}
   {% block menucontent%} 
       <li class="menu-item menu-del"><a href="/post/delete/{{ post.id }}">Törlés</a></li>
       <li class="menu-item menu-edit"><a href="/post/edit/{{post.id}}">Szerkesztés</a></li>
 {% endblock %}
-{% endif %}
 
-
-  
 {% block navcontent %}
   {% if post.author_id == current_user.id %}
       <div class="auth-btns">
@@ -20,17 +17,16 @@
         <a href="/post/delete/{{ post.id }}" class="single-post-btn nav-del">Törlés</a>
         <a href="/post/edit/{{post.id}}" class="single-post-btn nav-edit">Szerkesztés</a>
       </div>
-  
-
   {% endif %}
 {% endblock %}
-
+{% endif %}
 
 {% block content %}
 
   {% if post.id is not defined %}
     <h1>Nincsenek postok</h1>
   {% else %}
+  
     <div class="post-header">
       <div class="header-img">
         <img src="/files/{{post.teaser_image}}" class="" alt="">
@@ -43,7 +39,7 @@
      
     </div>
 
-    <section class="single-post-body">
+    <article class="single-post-body">
       {{ post.body|safe }}
       <a href="/author/{{post.author_id}}" class="single-post-author">{{post.author.name}}</a>
       <div class="single-post-tags">
@@ -52,7 +48,7 @@
         <a href="/posts/tag/{{tag.tag_id}}">#{{tag.tag_name}}</a>
       {% endfor%}
       </div>
-    </section>
+    </article>
 
     
     

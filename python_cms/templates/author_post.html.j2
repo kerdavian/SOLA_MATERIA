@@ -28,7 +28,7 @@
 {#  #}
 <section class="posts">
   {% for post in posts|selectattr("author_id", "equalto", id) %}
-    <div class="post">
+    <article class="post">
         <div class="post-data">
             <div class="img-div">
             <a href="/post/{{ post.id }}">
@@ -45,14 +45,14 @@
                     <a href="/post/{{ post.id }}">{{post.title}}"</a>
                 </div>
             </div>
-        </div>
+        </article>
     </div>
   {% endfor %}
 </section>
 {% endblock %}
 
-{% block bodysource %} <script src="{{url_for('static', filename="pic-flex.js")}}"></script> 
-{% endblock %}
+{# {% block bodysource %} <script src="{{url_for('static', filename="pic-flex.js")}}"></script>  #}
+{# {% endblock %} #}
 
 
 

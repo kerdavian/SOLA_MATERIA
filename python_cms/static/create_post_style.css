@@ -138,3 +138,7 @@
 #tag-ok:hover {
   font-weight: 800;
 }
+
+.del-tag:hover {
+  cursor: pointer;
+}
