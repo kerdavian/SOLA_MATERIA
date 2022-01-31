@@ -23,7 +23,7 @@
 {% endif %} #}
 
 <section class="posts">
-  {% for post in posts|selectattr("category_name", "equalto", category) %}
+  {% for post in posts|sort(attribute="id", reverse=true)|selectattr("category_name", "equalto", category) %}
 
     <article class="post">
         <div class="post-data">

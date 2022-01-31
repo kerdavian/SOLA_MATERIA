@@ -11,7 +11,9 @@ class PostModel(BaseModel):
   promoted = db.Column(db.Boolean(), nullable=False)
   category_id = db.Column(db.Integer(), db.ForeignKey('category.id'))
   category_name = db.Column(db.String(), nullable=False)
+  # create_date = db.Column(db.DateTime(), nullable=False)
   create_date = db.Column(db.String(), nullable=False)
+
   # one post can have only one author
   author = db.relationship('UserModel', back_populates='posts')
   category = db.relationship('CategoryModel', back_populates='posts')

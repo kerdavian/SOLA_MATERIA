@@ -650,7 +650,16 @@ footer > .logo {
 
   .header-nav .kategoria {
     display: flex;
-    align-items: center;
+
+    /* align-items: center; */
+  }
+
+  .menu-container {
+    margin-top: 0;
+    border-top: none;
+    flex-grow: 1;
+
+    /* border-bottom: 4px solid black; */
   }
 
   .log-in {

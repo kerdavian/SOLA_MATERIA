@@ -21,6 +21,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from python_cms.db import BaseModel, db
+from dateutil import parser
 
 import bleach  # https://bleach.readthedocs.io/en/latest/
 
@@ -167,7 +168,7 @@ def create_post():
     tags = list(set(tags_from_form.split("-")[1:]))
     # tags = list(set(tags_from_form.split("-")))[1:]
 
-    print(tags)
+    # print(tags)
     unescaped_body = html.unescape(request.form.get('body'))
     clean_body = bleach.clean(unescaped_body,
                               tags=bleach.sanitizer.ALLOWED_TAGS +
@@ -185,12 +186,15 @@ def create_post():
       return render_template('create_post.html.j2', form=form, tags=all_tags)
 
     filename = secure_filename(file.filename)
+    print(filename)
     file.save(os.path.join(python_cms.ROOT_PATH, 'files_upload', filename))
     promoted = request.form.get('promoted')
     category_id = request.form.get('category')
     category = CategoryModel.get(category_id)
     # current date and time
     date_time = now.strftime("%d/%m/%Y")
+    # date_time = parser.parse(now.strftime("%c"))
+
     # print("-----------------", category.name)
     post = PostModel(title, body, current_user.get_id(), filename,
                      bool(promoted), category_id, category.name, date_time)
@@ -278,25 +282,26 @@ def edit_post(post_id):
 
     body = clean_body
     title = request.form.get('title')
-
-    file = request.files['teaser_image']
-    # print("----------------", file)
-
-    # print("--------------", file)
-    # if not file:
-    #   flash('Kép nélkül nem tud postot létrehozni!')
-    #   return render_template('edit_post.html.j2', form=form, post_id=post_id)
     filename = request.form.get('original_teaser_image')
+
     if not filename:
       file = request.files['teaser_image']
       filename = secure_filename(file.filename)
 
-      # flash('Kép nélkül nem tud postot létrehozni!')
-      # return render_template("edit.html.j2", form=form)
-    print("---------------------", filename)
-    post.teaser_image = filename
+    if not filename:
 
-    # filename = secure_filename(file.filename)
+      flash('Kép nélkül nem tud postot létrehozni!', 'error')
+      filename = post.teaser_image
+
+      print("-------------------------", post.teaser_image)
+      # return redirect(url_for('pages.edit_post'))
+      return render_template('edit_post.html.j2',
+                             form=form,
+                             tags=all_tags,
+                             post=post,
+                             post_id=post_id)
+
+    post.teaser_image = filename
 
     category_id = request.form.get('category')
     category = CategoryModel.get(category_id)
@@ -309,6 +314,7 @@ def edit_post(post_id):
     post.category_id = category_id
     post.category_name = category.name
     date_time = now.strftime("%d/%m/%Y")
+    # date_time = date_time = parser.parse(now.strftime("%c"))
     post.create_date = date_time
 
     post.save()
@@ -333,6 +339,7 @@ def edit_post(post_id):
   form.process()
   form.title.data = post.title
   form.teaser_image.data = post.teaser_image
+
   form.body.data = post.body
 
   form.promoted = bool(post.promoted)
@@ -341,21 +348,3 @@ def edit_post(post_id):
                          post=post,
                          post_id=post_id,
                          tags=all_tags)
-
-
-# @pages_blueprint.route('/subscribe', methods=['POST'])
-# def subscribe():
-#   email = request.form.get("feliratkozas")
-
-#   message = "Sikeres feliratkozás"
-#   server = smtplib.SMTP("smtp.gmail.com", 587)
-#   server.starttls()
-#   server.login("csampaie.5@gmail.com", "ApentaF++")
-#   server.sendmail("csampaie.5@gmail.com", email, message)
-
-#   error_statemant = ""
-#   if not email:
-#     error_statemant = "Add meg az email címed"
-#     return render_template("subscribe.html.j2", error_message=error_statemant)
-
-#   return render_template("subscribe.html.j2", error_message=error_statemant)

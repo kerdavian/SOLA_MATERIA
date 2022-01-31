@@ -61,7 +61,7 @@
 
 
     <label class="design-for-label teaser" for="teaser_image"> {{ form.teaser_image.label }}</label>
-    {{ form.teaser_image(class="form-input")}}
+    {{ form.teaser_image(class="form-input teaser_upload")}}
   </div>
 
   <div>
@@ -108,7 +108,7 @@
 <div id="tag-elements"></div>
 {# <input type="text" name="added-tags" value="" id="tags-for-python"> #}
 {# <label for="added-tags">{{form.added_tags.name}}</label> #}
-{{ form.added_tags(id="tags-for-python") }}
+{{ form.added_tags(id="tags-for-python", class="hidden") }}
 
 
 </form>

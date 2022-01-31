@@ -24,6 +24,11 @@
   margin-bottom: 10px;
 }
 
+.teaser_upload {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+}
+
 #delete-img-btn {
   width: 150px;
   height: 30px;

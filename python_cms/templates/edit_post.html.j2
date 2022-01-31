@@ -31,7 +31,7 @@
 
 
 <form action="/post/edit/{{post_id}}" method="POST" class="form-group clearfix" enctype="multipart/form-data">
-  <input type="hidden" value="{{ form.teaser_image.data }}" name="original_teaser_image" id="originalTeaserImage">
+  <input type="hidden" value="{{ post.teaser_image }}" name="original_teaser_image" id="originalTeaserImage">
   {# protect against csrf https://portswigger.net/web-security/csrf/tokens #}
   {{ form.csrf_token() }}
  
@@ -41,15 +41,16 @@
 
 
     <label class="design-for-label teaser" for="teaser_image"> {{ form.teaser_image.label }}</label>
-    {{ form.teaser_image(class="form-input hidden")}}
+    {{ form.teaser_image(class="form-input hidden teaser_upload")}}
 
 
-    {% if form.teaser_image.data != "" %}
+    {# {% if form.teaser_image.data != "" %} #}
       <img src="/files/{{post.teaser_image}}" id="edit-img" alt="">
+     
       <button id="delete-img-btn">Delete image</button>
-    {% else %}
-      {{ form.teaser_image(class="form-input")}}
-    {% endif %} 
+    {# {% else %} #}
+      {# {{ form.teaser_image(class="form-input")}} #}
+    {# {% endif %}  #}
   </div>
 
 
@@ -102,7 +103,7 @@
 <div id="tag-elements"></div>
 {# <input type="text" name="added-tags" value="" id="tags-for-python"> #}
 {# <label for="added-tags">{{form.added_tags.name}}</label> #}
-{{ form.added_tags(id="tags-for-python") }}
+{{ form.added_tags(id="tags-for-python", class="hidden") }}
 
 </form>
 

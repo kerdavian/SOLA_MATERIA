@@ -21,10 +21,12 @@
    </div>
   {% endfor %}
 
+
+
 {# {{date}} #}
 
 <section class="posts">
-  {% for post in posts|selectattr("promoted", "equalto", True) %}
+  {% for post in posts|sort(attribute="id", reverse=true)|selectattr("promoted", "equalto", True) %}
     <article class="post promoted ">
         <div class="post-data"> {#relatív#}
             <div class="position-abs img-max">
@@ -53,7 +55,7 @@
     {% endif %}
 
 <section class="posts container">
-  {% for post in posts|selectattr("promoted", "equalto", False) %}
+  {% for post in posts|sort(attribute="id", reverse=true)|selectattr("promoted", "equalto", False) %}
     <article class="post">
         <div class="post-data">
             <div class="img-div">
